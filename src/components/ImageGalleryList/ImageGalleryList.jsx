@@ -1,5 +1,7 @@
 //взять через імпорт стилі ImagesList
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem'
+import { ImagesList } from 'components/ImageGalleryList/ImageGalleryList.styled';
+
 
 const ImageGallerylist = ({images}) => {
   return (
