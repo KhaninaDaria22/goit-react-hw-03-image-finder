@@ -1,5 +1,8 @@
 import { Component} from "react";
 import FetchImg from "services/img-api";
+// import ImageGalleryPending  from "components/ImageGalleryPending/ImageGalleryPending";
+import ImageGalleryListError from "components/ImageGalleryListError/ImageGalleryListError.JSX"
+import ImageGallerylist from "components/ImageGalleryList/ImageGalleryList";
 
 //прописуємо статуст при кожному рендері сторінки
 const Status = {
@@ -22,7 +25,7 @@ export default class ImageGallery  extends Component {
     const nextName = this.props.imgItem;
 
     if(prevName !== nextName) {
-        this.setState({sttus: Status.PENDING})
+        this.setState({status: Status.PENDING})
 
         FetchImg
             .fetchImg(nextName)
@@ -39,13 +42,13 @@ export default class ImageGallery  extends Component {
     
 //перевряємо статуси на іф 
     if(status === 'idle') {
-        toast.error('Enter the title img');
+        error('Enter the title img');
         return;
     }
 //показуємо попередні і загружаємо далі 
-    if(status === 'pending') {
-        return <ImageGalleryPending imgItem={imgItem} />
-    }
+    // if(status === 'pending') {
+    //     return <ImageGalleryPending imgItem={imgItem} />
+    // }
 //аоказуємо помилку при ренедері
     if( status === 'rejected') {
         return <ImageGalleryListError message={error.message}/>
@@ -57,5 +60,3 @@ export default class ImageGallery  extends Component {
    }
 }
 
-{/* <ul class="gallery">
-</ul> */}

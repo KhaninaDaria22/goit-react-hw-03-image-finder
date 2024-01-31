@@ -1,5 +1,5 @@
 import { Component } from "react";
-import Searchbar from "components/Searchbar/Searchbar";
+import Searchbar from "components/Searchbar/SearchbarForm";
 import ImageGallery from "components/ImageGallery/ImageGallery";
 import Button from "components/Button/Button";
 
