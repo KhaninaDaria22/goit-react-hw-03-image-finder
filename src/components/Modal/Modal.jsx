@@ -1,30 +1,39 @@
 
-import React, { Component } from 'react';
-import { ModalItem, Overlay } from './Modal.styled';
+import { Component } from 'react';
+import { createPortal } from "react-dom";
+
+import styles from "./modal.module.css"
+
+
+const modalRoot = document.getElementById("modal-root");
+
 
 class Modal extends Component {
   componentDidMount() {
-    document.addEventListener('keydown', this.escapeHandler);
+    document.addEventListener('keydown', this.closeModal);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.escapeHandler);
+    document.removeEventListener('keydown', this.ecloseModal);
   }
 
-  escapeHandler = e => {
-    e.code === 'Escape' && this.props.onClose();
-  };
+  closeModal = ({target, currentTarget, code})=> {
+    if(target === currentTarget || code === "Escape") {
+        this.props.close()
+    }
+}
 
   render() {
-    const { largeImg, onClose } = this.props;
-    return (
-      <Overlay className="overlay" onClick={onClose}>
-        <ModalItem className="modal">
-          <img src={largeImg} alt="info" />
-        </ModalItem>
-      </Overlay>
-    );
-  }
+    const { closeModal } = this;
+    const {children} = this.props;
+    return createPortal(
+      (<div className={styles.overlay} onClick={closeModal}>
+          <div className={styles.modal} >                    
+              {children}
+          </div>
+      </div>),
+  modalRoot)
 }
+};
 
 export default Modal;

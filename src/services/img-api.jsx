@@ -1,10 +1,23 @@
+import axios from "axios";
 
-const BASE_URL ='https://pixabay.com/api/';
-const KEY = '40998806-b427a66e0a96d7aa9b4c9074f';
+const instance = axios.create({
+    baseURL: "https://pixabay.com/api",
+})
 
 
-function FetchImg(query, page=1) {
-    return fetch(`${BASE_URL}?key=${KEY}&q=${query}&page=${page}&image_type=photo&orientation=horizontal&safesearch=true&per_page=12`).then(response => response.json());
+export const getAllImages = ()=> {
+    return instance.get("/?q=cat&page=1&key=40998806-b427a66e0a96d7aa9b4c9074f&image_type=photo&orientation=horizontal&per_page=12");
 }
 
-export default FetchImg;
+export const searchImage = ( q, page=1) => {
+    return instance.get("/", {
+        params: {
+            q,
+            page,
+            key: "40998806-b427a66e0a96d7aa9b4c9074f",
+            image_type: "photo",
+            orientation: "horizontal",
+            pere_page: 12,
+        }
+    })
+}

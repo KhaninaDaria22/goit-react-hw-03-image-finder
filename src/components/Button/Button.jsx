@@ -1,11 +1,8 @@
-import { LoadMoreBtn } from './Button.styled';
 
-const Button = ({ onLoadMore }) => {
-  return (
-    <LoadMoreBtn type="button" onClick={onLoadMore}>
-      Load more
-    </LoadMoreBtn>
-  );
+import styles from "./Button.module.css"
+
+const Button = ({ onClick, type="submit", children }) => {
+  return <button onClick={onClick} type={type} className={styles.btn}>{children}</button>
 };
 
 export default Button;
