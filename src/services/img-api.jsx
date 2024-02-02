@@ -21,3 +21,4 @@ export const searchImage = ( q, page=1) => {
         }
     })
 }
+

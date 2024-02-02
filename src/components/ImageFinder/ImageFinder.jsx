@@ -82,7 +82,7 @@ class ImageFinder extends Component {
             const { handleSearch, loadMore, showModal, closeModal } = this;
             const { images, loading, error, modalOpen, largeImage } = this.state;
             const isImages = Boolean(images.length);
-            const isMoreImages = Boolean(images.length % 12 === 0);
+            const isMoreImages = Boolean(images.length % 12);
     
             return (
                 <>
